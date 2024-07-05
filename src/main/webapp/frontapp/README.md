@@ -1,3 +1,37 @@
+## 설치 라이브러리
+
+```sh
+npm i react-router-dom
+```
+
+```sh
+npm i styled-components
+```
+
+```sh
+npm i react-redux
+npm install @reduxjs/toolkit react-redux
+```
+
+```sh
+npm i jwt-decode
+```
+
+```sh
+npm i react-bootstrap
+```
+
+```sh
+npm i axios
+```
+
+```sh
+npm i react-bootstrap-icons
+```
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +102,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
