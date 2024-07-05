@@ -19,6 +19,7 @@ npm i jwt-decode
 
 ```sh
 npm i react-bootstrap
+npm install react-bootstrap bootstrap
 ```
 
 ```sh
