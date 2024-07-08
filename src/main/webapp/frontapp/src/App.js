@@ -1,30 +1,28 @@
-import { Nav, Navbar } from "react-bootstrap";
-import { BrowserRouter, Link } from "react-router-dom";
+import { Container } from "react-bootstrap";
+import { Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import Detail from "./pages/post/Detail";
+import Home from "./pages/post/Home";
+import SaveForm from "./pages/post/SaveForm";
+import UpdateForm from "./pages/post/UpdateForm";
+import JoinForm from "./pages/user/JoinForm";
+import LoginForm from "./pages/user/LoginForm";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Navbar bg="dark" expand="lg" variant="dark">
-        <Link to="/" className="navbar-brand">
-          블로그홈
-        </Link>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <Link to="/saveForm" className="nav-link">
-              글쓰기
-            </Link>
-            <Link className="nav-link">로그아웃</Link>
-            <Link to="/loginForm" className="nav-link">
-              로그인
-            </Link>
-            <Link to="/joinForm" className="nav-link">
-              회원가입
-            </Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-    </BrowserRouter>
+    <div>
+      <Header />
+      <Container>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/saveForm" element={<SaveForm />} />
+          <Route path="/post/:id" element={<Detail />} />
+          <Route path="/loginForm" element={<LoginForm />} />
+          <Route path="/joinForm" elment={<JoinForm />} />
+          <Route path="/updateForm/:id" element={<UpdateForm />} />
+        </Routes>
+      </Container>
+    </div>
   );
 }
 
