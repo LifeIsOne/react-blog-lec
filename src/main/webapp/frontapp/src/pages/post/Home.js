@@ -4,15 +4,15 @@ import PostItem from "../../components/PostItem";
 import axios from "axios";
 
 const Home = () => {
-  const [posts, setPosts ] = useState([]);
+  const [posts, setPosts] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     apiHome();
-  },[]);
+  }, []);
   
   async function apiHome(){
     let response = await axios({
-      url: "http:localhost:8080",
+      url: "http://localhost:8080",
       method: "GET"
     });
 
@@ -25,8 +25,8 @@ const Home = () => {
 
   return (
     <div>
-      {posts.map(post => (
-        <PostItem key={post.id} id={post.id} title={post.title} />
+      {posts.map((post) => (
+        <PostItem id={1} title={"제목1"} />
       ))}
       {/* {<PostItem id={1} title={"제목1"} />} */}
       {<PostItem id={2} title={"제목2"} />}

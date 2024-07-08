@@ -33,4 +33,4 @@ spring:
     open-in-view: true
 
 allow:
-  host: http:localhost:3000
+  host: http://localhost:3000
