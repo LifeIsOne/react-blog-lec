@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Pagination } from "react-bootstrap";
-import PostItem from "../../components/PostItem";
 import axios from "axios";
+import BoardItem from "../../components/BoardItem";
 
 const Home = () => {
-  const [posts, setPosts] = useState([]);
+  const [model, setPage] = useState({
+     totalPage: undefined,
+     number   : undefined,
+     isFirst  : true,
+     isLast   : false,
+     boards   : [],
+  });
 
   useEffect(() => {
     apiHome();
@@ -12,12 +18,13 @@ const Home = () => {
   
   async function apiHome(){
     let response = await axios({
-      url: "http://localhost:8080",
+      url   : "http://localhost:8080",
       method: "GET"
     });
 
-    console.log("posts", response.data);
-    setPosts(response.data.body);
+    console.log("model", response.data.body);
+
+    setPage(response.data.body);
   }
 
   function prev() {}
@@ -25,11 +32,11 @@ const Home = () => {
 
   return (
     <div>
-      {posts.map((post) => (
-        <PostItem id={1} title={"제목1"} />
+      {model.boards.map((board) => (
+        <BoardItem key={board.id} id={board.id} title={board.title} />
       ))}
-      {/* {<PostItem id={1} title={"제목1"} />} */}
-      {<PostItem id={2} title={"제목2"} />}
+      {/* {<BoardItem id={1} title={"제목1"} />} */}
+      {<BoardItem id={2} title={"제목2"} />}
       <br />
       <div className="d-flex justify-content-center">
         <Pagination>
