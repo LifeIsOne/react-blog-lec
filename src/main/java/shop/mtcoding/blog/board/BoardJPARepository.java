@@ -9,6 +9,12 @@ import java.util.Optional;
 
 public interface BoardJPARepository extends JpaRepository<Board, Integer> {
 
-    @Query("select b from Board b join fetch b.user u where b.id = :id")
+    @Query("""
+            SELECT distinct b
+            FROM Board b
+            JOIN FETCH b.user u
+            LEFT JOIN FETCH b.replies r
+            WHERE b.id = :id
+            """)
     Optional<Board> findByIdJoinUser(@Param("id") int id);
 }
