@@ -4,7 +4,9 @@ import axios from "axios";
 import BoardItem from "../../components/BoardItem";
 
 const Home = () => {
-  const [model, setPage] = useState({
+  const [ page, setPage ] = useState(0);
+
+  const [model, setModel] = useState({
      totalPage: undefined,
      number   : undefined,
      isFirst  : true,
@@ -13,37 +15,44 @@ const Home = () => {
   });
 
   useEffect(() => {
+    console.log("userEffect 실행 됨!");
     apiHome();
-  }, []);
+  }, [page]);
   
   async function apiHome(){
     let response = await axios({
-      url   : "http://localhost:8080",
+      url   : "http://localhost:8080?page=" + page,
       method: "GET"
     });
 
     console.log("model", response.data.body);
 
-    setPage(response.data.body);
+    setModel(response.data.body);
   }
 
-  function prev() {}
-  function next() {}
+  function prev() {
+    console.log("prev 실행 됨! page : " + page);
+    setPage(page - 1);
+  }
+  function next() {
+    console.log("next 실행 됨! page : " + page);
+    setPage(page + 1);
+  }
 
   return (
     <div>
       {model.boards.map((board) => (
         <BoardItem key={board.id} id={board.id} title={board.title} />
       ))}
-      {/* {<BoardItem id={1} title={"제목1"} />} */}
-      {<BoardItem id={2} title={"제목2"} />}
       <br />
       <div className="d-flex justify-content-center">
         <Pagination>
-          <Pagination.Item onClick={prev} disabled>
+          <Pagination.Item onClick={prev} disabled={model.isFirst}>
             Prev
           </Pagination.Item>
-          <Pagination.Item onClick={next}>Next</Pagination.Item>
+          <Pagination.Item onClick={next} disabled={model.isLast}>
+            Next
+          </Pagination.Item>
         </Pagination>
       </div>
     </div>
